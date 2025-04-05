@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Criar uma pasta para os manuais
 mkdir -p manuais_weg
 cd manuais_weg
 
-# Lista de URLs
+user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+referer="https://www.weg.net/"
+
 urls=(
 "https://static.weg.net/medias/downloadcenter/h0c/hfd/WEG-WMO-iom-installation-operation-and-maintenance-manual-of-electric-motors-50033244-manual-pt-en-es-web.pdf"
 "https://static.weg.net/medias/downloadcenter/h32/h6d/manual_transformador_seco_10000647758_portugues.pdf"
@@ -28,10 +29,15 @@ urls=(
 "https://static.weg.net/medias/downloadcenter/h56/hc5/WEG-CESTARI-manual-iom-coroa-e-rosca-50111526-english-web.pdf"
 )
 
-# Baixar todos os arquivos
 for url in "${urls[@]}"; do
-    echo "Baixando: $url"
-    wget -q --show-progress "$url"
+    file=$(basename "$url")
+    echo "🔽 Baixando $file..."
+    curl -L -O -H "User-Agent: $user_agent" -H "Referer: $referer" -H "Connection: keep-alive" "$url"
+    if [[ $? -ne 0 ]]; then
+        echo "❌ Falha ao baixar: $url"
+    else
+        echo "✅ Sucesso: $file"
+    fi
 done
 
-echo "Download concluído. Os arquivos estão na pasta $(pwd)."
+echo "🎉 Downloads com curl finalizados!"
