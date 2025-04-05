@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>RAG Estrela</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="./logo-branca-reduzida.png" width="10%" height="10%"/>
+        <h1>RAG Teste</h1>
+    </header>
+
+    <nav>
+        <button onclick="mostrar('upload')">📄 Upload</button>
+        <button onclick="mostrar('indexar')">🧠 Indexar</button>
+        <button onclick="mostrar('perguntar')">❓ Perguntar</button>
+    </nav>
+
+    <main>
+        <section id="upload" class="aba">
+            <h2>Upload de Arquivos PDF</h2>
+            <input type="file" id="pdfs" multiple accept=".pdf">
+            <button onclick="uploadPDFs()">Enviar PDFs</button>
+        </section>
+
+        <section id="indexar" class="aba">
+            <h2>Indexar Contexto Temático</h2>
+            <input type="text" id="contexto" placeholder="Nome do contexto">
+            <p style="font-size:0.9rem;color:#aaa">Após indexar, o contexto aparecerá abaixo para seleção:</p>
+            <button onclick="indexarContexto()">Indexar</button>
+            <div id="loading" class="oculto">⌛ Indexando...</div>
+        </section>
+
+        <section id="perguntar" class="aba">
+            <h2>Fazer Pergunta</h2>
+            <label for="contexto_pergunta">Escolha o contexto:</label>
+            <select id="contexto_pergunta" style="margin-bottom:1rem"></select>
+            <input type="text" id="pergunta" placeholder="Digite sua pergunta" width="30%">
+            <select id="modelo">
+                <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+                <option value="gpt-4">gpt-4</option>
+            </select>
+            <button onclick="consultar()">Perguntar</button>
+
+            <div class="resposta" id="resposta_rag"></div>
+            <div class="resposta" id="resposta_pura"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
