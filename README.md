@@ -1,9 +1,25 @@
-Testes com RAG usando frontend personalizado.
+# Testes com RAG usando frontend.
 
-Executar 
+## Passo 1: Instalar dependências
 
-  *instalar_dependencias_rag.sh* 
+*instalar_dependencias_rag.sh* 
+## Passo 2: Exportar a variável OPENAI_API_KEY
 
-antes de rodar o servidor com 
+export OPENAI_API_KEY="sua_chave"
 
-  *uvicorn app.main:app --reload*
+## Passo3: rodar o servidor com 
+
+*uvicorn app.main:app --reload*
+
+
+## Passo4: 
+
+No frontend, carregar os arquivos PDF
+
+## Passo5: 
+
+No frontend, indexar o conteúdo
+
+## Passo6: 
+
+No Frontend, fazer as perguntas
