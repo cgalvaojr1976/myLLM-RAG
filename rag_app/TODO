@@ -1,0 +1,1 @@
+Tornar os contextos persistentes (após reiniciar a aplicação, os dados estão disponíveis, mas os contextos não aparecem no frontend)
